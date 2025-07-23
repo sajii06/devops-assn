@@ -52,10 +52,17 @@ jobs:
     # Update Github
     - name: Commit the changes
       run: |
-        git config --global user.email "<>"
-        git config --global user.name "GitHub Actions Bot"
-        git checkout main
-        git add deploy/deployment.yaml
-        git commit -m "Update deploy.yaml with new image version - ${{ env.VERSION }}"
-        git push origin main
+        git config --global user.name "Sajida Khanam"
+        git config --global user.email "sajida@example.com"
+
+        git add .
+        
+        # Commit only if there are changes
+        if git diff-index --quiet HEAD; then
+          echo "No changes to commit."
+        else
+          git commit -m "Update Kubernetes manifest with new image version"
+          git push
+        fi
+
 
