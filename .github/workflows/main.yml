@@ -35,18 +35,18 @@ jobs:
     # Build the Docker Image
     - name: Build Docker Image
       run: |
-        docker build -t sajii06/devops-assn:${{ env.VERSION }} .
+        docker build -t ksajida/devops-assn:${{ env.VERSION }} .
 
     # Push the Docker Image
     - name: Push Docker Image
       run: |
-        docker push sajii06/devops-assn:${{ env.VERSION }}
+        docker push ksajida/devops-assn:${{ env.VERSION }}
 
     # UPdate the K8s Manifest Files
     - name: Update K8s Manifests
       run: |
         cat deploy/deployment.yaml
-        sed -i "s|image: sajii06/devops-assn:.*|image: sajii06/devops-assn:${{ env.VERSION }}|g" deploy/deployment.yaml
+        sed -i "s|image: ksajida/devops-assn:.*|image: ksajida/devops-assn:${{ env.VERSION }}|g" deploy/deployment.yaml
         cat deploy/deployment.yaml
 
     # Update Github
